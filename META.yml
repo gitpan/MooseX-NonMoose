@@ -6,5 +6,5 @@ generated_by: Dist::Zilla::Plugin::MetaYaml version 1.003
 license: perl
 name: MooseX-NonMoose
 requires: 
-  Moose: 0.75_01
-version: 0.01
+  Moose: 0.76
+version: 0.02
