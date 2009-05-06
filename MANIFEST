@@ -18,4 +18,5 @@ t/010-immutable.t
 t/020-BUILD.t
 t/021-BUILDARGS.t
 t/022-replaced-constructor.t
+t/023-FOREIGNBUILDARGS.t
 t/030-only-metaclass-trait.t

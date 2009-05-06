@@ -1,5 +1,5 @@
 package MooseX::NonMoose;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Moose ();
 use Moose::Exporter;
@@ -10,7 +10,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -65,6 +65,13 @@ about inlining, this is all you need to worry about. Applying
 L<MooseX::NonMoose::Meta::Role::Constructor> as well will provide an inlined
 constructor when you immutabilize your class.
 
+C<MooseX::NonMoose> allows you to manipulate the argument list that gets passed
+to the superclass constructor by defining a C<FOREIGNBUILDARGS> method. This is
+called with the same argument list as the C<BUILDARGS> method, but should
+return a list of arguments to pass to the superclass constructor. This allows
+C<MooseX::NonMoose> to support superclasses whose constructors would get
+confused by the extra arguments that Moose requires (for attributes, etc.)
+
 =cut
 
 Moose::Exporter->setup_import_methods;
@@ -86,10 +93,6 @@ sub init_meta {
 
 =over 4
 
-=item * Provide some way to manipulate the argument list that gets passed to the
-superclass constructor, to support setting attributes in the constructor for a
-subclass of a class whose constructor does strict argument checking.
-
 =item * Allow for constructors with names other than C<new>.
 
 =back
@@ -101,11 +104,6 @@ subclass of a class whose constructor does strict argument checking.
 =item * The reference that the non-Moose class uses as its instance type B<must>
 match the instance type that Moose is using (currently, Moose defaults to
 hashref based instances).
-
-=item * Arguments passed to the constructor will be passed as-is to the
-superclass constructor - there is currently no BUILDARGS-like munging available
-for this step (BUILDARGS is still available to munge the argument list that
-Moose sees).
 
 =item * Completely overriding the constructor in a class using
 C<MooseX::NonMoose> (i.e. using C<sub new { ... }>) currently doesn't work,
