@@ -1,5 +1,5 @@
 package MooseX::NonMoose::Meta::Role::Class;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Moose::Role;
 
@@ -9,7 +9,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

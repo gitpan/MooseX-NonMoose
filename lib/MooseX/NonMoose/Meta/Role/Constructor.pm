@@ -1,5 +1,5 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Moose::Role;
 
@@ -9,7 +9,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -61,7 +61,7 @@ sub _generate_instance {
     my $new = $self->name;
     my $meta = $self->associated_metaclass;
     my $super_new_class = $meta->find_next_method_by_name($new)->package_name;
-    my $arglist = $meta->find_method_by_name('FOREIGNBUILDARGS')
+    my $arglist = $meta->get_method('FOREIGNBUILDARGS')
                 ? "${class_var}->FOREIGNBUILDARGS(\@_)"
                 : '@_';
     # XXX: this should probably be taking something from the meta-instance api,
