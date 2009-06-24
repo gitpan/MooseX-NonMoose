@@ -1,5 +1,5 @@
 package MooseX::NonMoose::InsideOut;
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 use Moose ();
 use Moose::Exporter;
@@ -10,7 +10,7 @@ MooseX::NonMoose::InsideOut - easy subclassing of non-Moose non-hashref classes
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 

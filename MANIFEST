@@ -25,4 +25,3 @@ t/030-only-metaclass-trait.t
 t/031-moose-exporter.t
 t/032-moosex-insideout.t
 t/033-moosex-globref.t
-test.pl

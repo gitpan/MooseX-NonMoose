@@ -9,7 +9,7 @@ WriteMakefile(
   NAME      => 'MooseX::NonMoose',
   AUTHOR    => 'Jesse\ Luehrs\ \<doy\ at\ tozt\ dot\ net\>',
   ABSTRACT  => 'foreign\ inheritance\ for\ Moose',
-  VERSION   => '0.04',
+  VERSION   => '0.05',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {

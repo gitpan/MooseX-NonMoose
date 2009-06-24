@@ -10,4 +10,4 @@ meta-spec:
 name: MooseX-NonMoose
 requires:
   Moose: 0.83
-version: 0.04
+version: 0.05
