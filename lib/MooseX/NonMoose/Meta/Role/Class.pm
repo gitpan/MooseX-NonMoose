@@ -1,7 +1,9 @@
 package MooseX::NonMoose::Meta::Role::Class;
-our $VERSION = '0.05';
+our $VERSION = '0.06';
+
 
 use Moose::Role;
+use List::MoreUtils qw(any);
 
 =head1 NAME
 
@@ -9,16 +11,22 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
   package Foo;
+our $VERSION = '0.06';
+
+
   use Moose -traits => 'MooseX::NonMoose::Meta::Role::Class';
 
   # or
 
   package My::Moose;
+our $VERSION = '0.06';
+
+
   use Moose ();
   use Moose::Exporter;
 
@@ -95,6 +103,10 @@ around superclasses => sub {
 
     my @ret = $self->$orig(@superclasses);
 
+    # if the current class defined a custom new method (since subs happen at
+    # BEGIN time), don't try to override it
+    return if $self->has_method('new');
+
     # we need to get the non-moose constructor from the superclass
     # of the class where this method actually exists, regardless of what class
     # we're calling it on
@@ -116,8 +128,8 @@ around superclasses => sub {
 
         # if the constructor we're inheriting is an inlined version of the
         # default moose constructor, don't do anything either
-        # XXX: wrong if the class overrode new manually?
-        return @ret if $constructor_class_meta->name eq 'Moose::Meta::Method::Constructor';
+        return @ret if any { $_->isa($constructor_class_meta->name) }
+                           $super_new->associated_metaclass->_inlined_methods;
     }
 
     $self->add_method(new => sub {

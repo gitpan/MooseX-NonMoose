@@ -21,7 +21,10 @@ t/020-BUILD.t
 t/021-BUILDARGS.t
 t/022-replaced-constructor.t
 t/023-FOREIGNBUILDARGS.t
+t/024-nonmoose-moose-nonmoose.t
 t/030-only-metaclass-trait.t
 t/031-moose-exporter.t
 t/032-moosex-insideout.t
 t/033-moosex-globref.t
+t/release-pod-coverage.t
+t/release-pod-syntax.t

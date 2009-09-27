@@ -1,5 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
-our $VERSION = '0.05';
+our $VERSION = '0.06';
+
 
 use Moose::Role;
 
@@ -9,11 +10,14 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
   package My::Moose;
+our $VERSION = '0.06';
+
+
   use Moose ();
   use Moose::Exporter;
 
@@ -64,11 +68,8 @@ sub _generate_instance {
     my $arglist = $meta->get_method('FOREIGNBUILDARGS')
                 ? "${class_var}->FOREIGNBUILDARGS(\@_)"
                 : '@_';
-    # XXX: this should probably be taking something from the meta-instance api,
-    # rather than calling bless directly, but this works fine for now, and i
-    # want to wait for the whole immutablization stuff to settle down before
-    # digging too deeply into it
-    "my $var = bless $super_new_class->$new($arglist), $class_var;\n";
+    my $instance = "$super_new_class->$new($arglist)";
+    "my $var = " . $self->_meta_instance->inline_rebless_instance_structure($instance, $class_var) . ";\n";
 }
 
 no Moose::Role;
