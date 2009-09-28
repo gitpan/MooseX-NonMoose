@@ -1,6 +1,5 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
-our $VERSION = '0.06';
-
+our $VERSION = '0.07';
 
 use Moose::Role;
 
@@ -10,14 +9,11 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
   package My::Moose;
-our $VERSION = '0.06';
-
-
   use Moose ();
   use Moose::Exporter;
 

@@ -1,6 +1,5 @@
 package MooseX::NonMoose;
-our $VERSION = '0.06';
-
+our $VERSION = '0.07';
 
 use Moose::Exporter;
 
@@ -10,14 +9,11 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
   package Term::VT102::NBased;
-our $VERSION = '0.06';
-
-
   use Moose;
   use MooseX::NonMoose;
   extends 'Term::VT102';
