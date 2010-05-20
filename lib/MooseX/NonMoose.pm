@@ -1,6 +1,7 @@
 package MooseX::NonMoose;
-our $VERSION = '0.07';
-
+BEGIN {
+  $MooseX::NonMoose::VERSION = '0.08';
+}
 use Moose::Exporter;
 
 =head1 NAME
@@ -9,7 +10,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,7 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
-our $VERSION = '0.07';
-
+BEGIN {
+  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.08';
+}
 use Moose::Role;
 
 =head1 NAME
@@ -9,7 +10,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
@@ -65,7 +66,22 @@ sub _generate_instance {
                 ? "${class_var}->FOREIGNBUILDARGS(\@_)"
                 : '@_';
     my $instance = "$super_new_class->$new($arglist)";
-    "my $var = " . $self->_meta_instance->inline_rebless_instance_structure($instance, $class_var) . ";\n";
+    return "my $var = $instance;\n"
+         . "if (!Scalar::Util::blessed($var)) {\n"
+         . "    " . $self->_inline_throw_error(
+               "'The constructor for $super_new_class did not return a blessed instance'"
+           ) . ";\n"
+         . "}\n"
+         . "elsif (!$var->isa($class_var)) {\n"
+         . "    if (!$class_var->isa(Scalar::Util::blessed($var))) {\n"
+         . "        " . $self->_inline_throw_error(
+               "\"The constructor for $super_new_class returned an object whose class is not a parent of $class_var\""
+           ) . ";\n"
+         . "    }\n"
+         . "    else {\n"
+         . "        " . $self->_meta_instance->inline_rebless_instance_structure($var, $class_var) . ";\n"
+         . "    }\n"
+         . "}\n";
 }
 
 no Moose::Role;

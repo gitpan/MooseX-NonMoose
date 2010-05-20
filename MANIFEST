@@ -27,3 +27,7 @@ t/031-moose-exporter.t
 t/032-moosex-insideout.t
 t/033-moosex-globref.t
 t/040-destructor.t
+t/100-buggy-constructor-inlining.t
+t/101-buggy-constructors.t
+t/release-pod-coverage.t
+t/release-pod-syntax.t

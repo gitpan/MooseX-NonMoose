@@ -1,6 +1,7 @@
 package MooseX::NonMoose::Meta::Role::Class;
-our $VERSION = '0.07';
-
+BEGIN {
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.08';
+}
 use Moose::Role;
 use List::MoreUtils qw(any);
 
@@ -10,7 +11,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
@@ -148,12 +149,26 @@ sub _check_superclass_constructor {
                            ? $class->FOREIGNBUILDARGS(@_)
                            : @_;
         my $instance = $super_new->execute($class, @foreign_params);
-        my $self = Class::MOP::Class->initialize($class)->new_object(
+        if (!blessed($instance)) {
+            confess "The constructor for "
+                  . $super_new->associated_metaclass->name
+                  . " did not return a blessed instance";
+        }
+        elsif (!$instance->isa($class)) {
+            if (!$class->isa(blessed($instance))) {
+                confess "The constructor for "
+                      . $super_new->associated_metaclass->name
+                      . " returned an object whose class is not a parent of "
+                      . $class;
+            }
+            else {
+                bless $instance, $class;
+            }
+        }
+        return Class::MOP::Class->initialize($class)->new_object(
             __INSTANCE__ => $instance,
             %$params,
         );
-        $self->BUILDALL($params);
-        return $self;
     });
     $self->has_nonmoose_constructor(1);
 }
