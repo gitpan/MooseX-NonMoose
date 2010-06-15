@@ -1,48 +1,11 @@
 package MooseX::NonMoose::Meta::Role::Class;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.08';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.09';
 }
 use Moose::Role;
 use List::MoreUtils qw(any);
+# ABSTRACT: metaclass trait for L<MooseX::NonMoose>
 
-=head1 NAME
-
-MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
-
-=head1 VERSION
-
-version 0.08
-
-=head1 SYNOPSIS
-
-  package Foo;
-  use Moose -traits => 'MooseX::NonMoose::Meta::Role::Class';
-
-  # or
-
-  package My::Moose;
-  use Moose ();
-  use Moose::Exporter;
-
-  Moose::Exporter->setup_import_methods;
-  sub init_meta {
-      shift;
-      my %options = @_;
-      Moose->init_meta(%options);
-      Moose::Util::MetaRole::apply_metaclass_roles(
-          for_class       => $options{for_class},
-          metaclass_roles => ['MooseX::NonMoose::Meta::Role::Class'],
-      );
-      return Class::MOP::class_of($options{for_class});
-  }
-
-=head1 DESCRIPTION
-
-This trait implements everything involved with extending non-Moose classes,
-other than doing the actual inlining at C<make_immutable> time. See
-L<MooseX::NonMoose> for more details.
-
-=cut
 
 has has_nonmoose_constructor => (
     is      => 'rw',
@@ -241,17 +204,58 @@ around superclasses => sub {
 
 no Moose::Role;
 
+1;
+
+__END__
+=pod
+
+=head1 NAME
+
+MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
+
+=head1 VERSION
+
+version 0.09
+
+=head1 SYNOPSIS
+
+  package Foo;
+  use Moose -traits => 'MooseX::NonMoose::Meta::Role::Class';
+
+  # or
+
+  package My::Moose;
+  use Moose ();
+  use Moose::Exporter;
+
+  Moose::Exporter->setup_import_methods;
+  sub init_meta {
+      shift;
+      my %options = @_;
+      Moose->init_meta(%options);
+      Moose::Util::MetaRole::apply_metaclass_roles(
+          for_class       => $options{for_class},
+          metaclass_roles => ['MooseX::NonMoose::Meta::Role::Class'],
+      );
+      return Class::MOP::class_of($options{for_class});
+  }
+
+=head1 DESCRIPTION
+
+This trait implements everything involved with extending non-Moose classes,
+other than doing the actual inlining at C<make_immutable> time. See
+L<MooseX::NonMoose> for more details.
+
 =head1 AUTHOR
 
   Jesse Luehrs <doy at tozt dot net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Jesse Luehrs.
+This software is copyright (c) 2010 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
-the same terms as perl itself.
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 
-1;

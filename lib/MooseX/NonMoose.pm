@@ -1,8 +1,30 @@
 package MooseX::NonMoose;
 BEGIN {
-  $MooseX::NonMoose::VERSION = '0.08';
+  $MooseX::NonMoose::VERSION = '0.09';
 }
 use Moose::Exporter;
+# ABSTRACT: easy subclassing of non-Moose classes
+
+
+my ($import, $unimport, $init_meta) = Moose::Exporter->build_import_methods(
+    metaclass_roles         => ['MooseX::NonMoose::Meta::Role::Class'],
+    constructor_class_roles => ['MooseX::NonMoose::Meta::Role::Constructor'],
+    install                 => [qw(import unimport)],
+);
+
+sub init_meta {
+    my $package = shift;
+    my %options = @_;
+    Carp::cluck('Roles have no use for MooseX::NonMoose')
+        if Class::MOP::class_of($options{for_class})->isa('Moose::Meta::Role');
+    $package->$init_meta(@_);
+}
+
+
+1;
+
+__END__
+=pod
 
 =head1 NAME
 
@@ -10,7 +32,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 SYNOPSIS
 
@@ -72,22 +94,6 @@ return a list of arguments to pass to the superclass constructor. This allows
 C<MooseX::NonMoose> to support superclasses whose constructors would get
 confused by the extra arguments that Moose requires (for attributes, etc.)
 
-=cut
-
-my ($import, $unimport, $init_meta) = Moose::Exporter->build_import_methods(
-    metaclass_roles         => ['MooseX::NonMoose::Meta::Role::Class'],
-    constructor_class_roles => ['MooseX::NonMoose::Meta::Role::Constructor'],
-    install                 => [qw(import unimport)],
-);
-
-sub init_meta {
-    my $package = shift;
-    my %options = @_;
-    Carp::cluck('Roles have no use for MooseX::NonMoose')
-        if Class::MOP::class_of($options{for_class})->isa('Moose::Meta::Role');
-    $package->$init_meta(@_);
-}
-
 =head1 TODO
 
 =over 4
@@ -96,7 +102,7 @@ sub init_meta {
 
 =back
 
-=head1 BUGS/CAVEATS
+=head1 CAVEATS
 
 =over 4
 
@@ -119,16 +125,28 @@ in the future.
 
 =back
 
+=for Pod::Coverage   init_meta
+
+=head1 BUGS
+
+No known bugs.
+
 Please report any bugs through RT: email
 C<bug-moosex-nonmoose at rt.cpan.org>, or browse to
 L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MooseX-NonMoose>.
 
 =head1 SEE ALSO
 
-L<Moose::Cookbook::FAQ/How do I make non-Moose constructors work with Moose?>
+=over 4
 
-L<MooseX::Alien> - serves the same purpose, but with a radically different (and
-far more hackish) implementation.
+=item * L<Moose::Cookbook::FAQ/How do I make non-Moose constructors work with Moose?>
+
+=item * L<MooseX::Alien>
+
+serves the same purpose, but with a radically different (and far more hackish)
+implementation.
+
+=back
 
 =head1 SUPPORT
 
@@ -164,11 +182,10 @@ L<http://search.cpan.org/dist/MooseX-NonMoose>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Jesse Luehrs.
+This software is copyright (c) 2010 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
-the same terms as perl itself.
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 
-1;

@@ -1,9 +1,9 @@
 
 
 This archive contains the distribution MooseX-NonMoose,
-version 0.08:
+version 0.09:
 
-  foreign inheritance for Moose
+  easy subclassing of non-Moose classes
 
 This software is copyright (c) 2010 by Jesse Luehrs.
 
