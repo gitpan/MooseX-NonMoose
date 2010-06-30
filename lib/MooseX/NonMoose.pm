@@ -1,6 +1,6 @@
 package MooseX::NonMoose;
 BEGIN {
-  $MooseX::NonMoose::VERSION = '0.09';
+  $MooseX::NonMoose::VERSION = '0.10';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose classes
@@ -32,7 +32,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 SYNOPSIS
 
@@ -178,7 +178,7 @@ L<http://search.cpan.org/dist/MooseX-NonMoose>
 
 =head1 AUTHOR
 
-  Jesse Luehrs <doy at tozt dot net>
+Jesse Luehrs <doy at tozt dot net>
 
 =head1 COPYRIGHT AND LICENSE
 

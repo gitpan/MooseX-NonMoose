@@ -31,6 +31,7 @@ t/33-moosex-globref.t
 t/40-destructor.t
 t/50-buggy-constructor-inlining.t
 t/51-buggy-constructors.t
+t/60-extends-version.t
 t/release-eol.t
 t/release-no-tabs.t
 t/release-pod-coverage.t
