@@ -1,5 +1,8 @@
 Revision history for MooseX-NonMoose
 
+0.11  2010-06-30
+      - Actually use the right test.
+
 0.10  2010-06-30
       - Don't break if someone specifies a version to extends.
 

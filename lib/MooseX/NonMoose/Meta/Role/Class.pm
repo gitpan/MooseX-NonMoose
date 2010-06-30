@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Class;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.10';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.11';
 }
 use Moose::Role;
 use List::MoreUtils qw(any);
@@ -192,7 +192,7 @@ around superclasses => sub {
 
     my @superclasses = @_;
     push @superclasses, 'Moose::Object'
-        unless grep { blessed($_) && $_->isa('Moose::Object') } @superclasses;
+        unless grep { !ref($_) && $_->isa('Moose::Object') } @superclasses;
 
     my @ret = $self->$orig(@superclasses);
 
@@ -215,7 +215,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 
