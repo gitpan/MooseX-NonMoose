@@ -17,7 +17,7 @@ requires:
   Moose: 1.08
 resources:
   repository: git://github.com/doy/moosex-nonmoose.git
-version: 0.13
+version: 0.14
 x_Dist_Zilla:
   plugins:
     -
