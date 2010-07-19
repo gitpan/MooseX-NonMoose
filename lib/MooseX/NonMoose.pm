@@ -1,15 +1,17 @@
 package MooseX::NonMoose;
 BEGIN {
-  $MooseX::NonMoose::VERSION = '0.11';
+  $MooseX::NonMoose::VERSION = '0.12';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose classes
 
 
 my ($import, $unimport, $init_meta) = Moose::Exporter->build_import_methods(
-    metaclass_roles         => ['MooseX::NonMoose::Meta::Role::Class'],
-    constructor_class_roles => ['MooseX::NonMoose::Meta::Role::Constructor'],
-    install                 => [qw(import unimport)],
+    class_metaroles => {
+        class       => ['MooseX::NonMoose::Meta::Role::Class'],
+        constructor => ['MooseX::NonMoose::Meta::Role::Constructor'],
+    },
+    install => [qw(import unimport)],
 );
 
 sub init_meta {
@@ -32,7 +34,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 SYNOPSIS
 
