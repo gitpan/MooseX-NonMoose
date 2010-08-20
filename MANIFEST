@@ -16,6 +16,7 @@ t/02-methods.t
 t/03-attrs.t
 t/04-multi-level.t
 t/05-moose.t
+t/052-hashref-constructor.t
 t/06-disable.t
 t/07-extends-moose-object.t
 t/10-immutable.t

@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.14';
+  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.15';
 }
 use Moose::Role;
 # ABSTRACT: constructor method trait for L<MooseX::NonMoose>
@@ -44,7 +44,18 @@ sub _generate_fallback_constructor {
                 ? "${class_var}->FOREIGNBUILDARGS(\@_)"
                 : '@_';
     my $instance = "${class_var}->${super_new_class}::$new($arglist)";
-    "${class_var}->Moose::Object::new(__INSTANCE__ => $instance, \@_)"
+    # XXX: the "my $__DUMMY = " part is because "return do" triggers a weird
+    # bug in pre-5.12 perls (it ends up returning undef)
+    "my \$__DUMMY = do {\n"
+  . "    if (ref(\$_[0]) eq 'HASH') {\n"
+  . "        \$_[0]->{__INSTANCE__} = $instance\n"
+  . "            unless exists \$_[0]->{__INSTANCE__};\n"
+  . "    }\n"
+  . "    else {\n"
+  . "        unshift \@_, __INSTANCE__ => $instance;\n"
+  . "    }\n"
+  . "    ${class_var}->Moose::Object::new(\@_);\n"
+  . "}";
 }
 
 sub _generate_instance {
@@ -88,7 +99,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 
