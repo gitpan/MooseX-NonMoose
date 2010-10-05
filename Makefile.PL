@@ -21,9 +21,9 @@ my %WriteMakefileArgs = (
   'NAME' => 'MooseX::NonMoose',
   'PREREQ_PM' => {
     'List::MoreUtils' => '0',
-    'Moose' => '1.08'
+    'Moose' => '1.15'
   },
-  'VERSION' => '0.15',
+  'VERSION' => '0.16',
   'test' => {
     'TESTS' => 't/*.t'
   }

@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.15';
+  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.16';
 }
 use Moose::Role;
 # ABSTRACT: constructor method trait for L<MooseX::NonMoose>
@@ -81,7 +81,7 @@ sub _generate_instance {
            ) . ";\n"
          . "    }\n"
          . "    else {\n"
-         . "        " . $self->_meta_instance->inline_rebless_instance_structure($var, $class_var) . ";\n"
+         . "        " . $self->associated_metaclass->inline_rebless_instance($var, $class_var) . ";\n"
          . "    }\n"
          . "}\n";
 }
@@ -99,7 +99,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 

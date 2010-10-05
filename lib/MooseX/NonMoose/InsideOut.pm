@@ -1,6 +1,6 @@
 package MooseX::NonMoose::InsideOut;
 BEGIN {
-  $MooseX::NonMoose::InsideOut::VERSION = '0.15';
+  $MooseX::NonMoose::InsideOut::VERSION = '0.16';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose non-hashref classes
@@ -18,8 +18,9 @@ my ($import, $unimport, $init_meta) = Moose::Exporter->build_import_methods(
 sub init_meta {
     my $package = shift;
     my %options = @_;
+    my $meta = Class::MOP::class_of($options{for_class});
     Carp::cluck('Roles have no use for MooseX::NonMoose')
-        if Class::MOP::class_of($options{for_class})->isa('Moose::Meta::Role');
+        if $meta && $meta->isa('Moose::Meta::Role');
     $package->$init_meta(@_);
 }
 
@@ -35,7 +36,7 @@ MooseX::NonMoose::InsideOut - easy subclassing of non-Moose non-hashref classes
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 

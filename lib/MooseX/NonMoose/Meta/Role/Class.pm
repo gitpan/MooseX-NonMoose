@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Class;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.15';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.16';
 }
 use Moose::Role;
 use List::MoreUtils qw(any);
@@ -215,7 +215,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 
