@@ -1,6 +1,6 @@
 package MooseX::NonMoose;
 BEGIN {
-  $MooseX::NonMoose::VERSION = '0.17';
+  $MooseX::NonMoose::VERSION = '0.18';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose classes
@@ -35,7 +35,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 SYNOPSIS
 
@@ -105,7 +105,7 @@ confused by the extra arguments that Moose requires (for attributes, etc.)
 
 =back
 
-=head1 CAVEATS
+=head1 BUGS/CAVEATS
 
 =over 4
 
@@ -128,15 +128,11 @@ in the future.
 
 =back
 
-=for Pod::Coverage   init_meta
-
-=head1 BUGS
-
-No known bugs.
-
 Please report any bugs through RT: email
 C<bug-moosex-nonmoose at rt.cpan.org>, or browse to
 L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MooseX-NonMoose>.
+
+=for Pod::Coverage   init_meta
 
 =head1 SEE ALSO
 
@@ -185,7 +181,7 @@ Jesse Luehrs <doy at tozt dot net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Jesse Luehrs.
+This software is copyright (c) 2011 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

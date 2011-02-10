@@ -1,6 +1,6 @@
 package MooseX::NonMoose::InsideOut;
 BEGIN {
-  $MooseX::NonMoose::InsideOut::VERSION = '0.17';
+  $MooseX::NonMoose::InsideOut::VERSION = '0.18';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose non-hashref classes
@@ -36,7 +36,7 @@ MooseX::NonMoose::InsideOut - easy subclassing of non-Moose non-hashref classes
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 SYNOPSIS
 
@@ -75,7 +75,7 @@ Jesse Luehrs <doy at tozt dot net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Jesse Luehrs.
+This software is copyright (c) 2011 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

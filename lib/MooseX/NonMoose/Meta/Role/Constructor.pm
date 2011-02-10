@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.17';
+  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.18';
 }
 use Moose::Role;
 # ABSTRACT: constructor method trait for L<MooseX::NonMoose>
@@ -21,25 +21,13 @@ around can_be_inlined => sub {
     return $self->$orig(@_);
 };
 
-sub _find_next_nonmoose_constructor_package {
-    my $self = shift;
-    my $new = $self->name;
-    my $meta = $self->associated_metaclass;
-    for my $method (map { $_->{code} } $meta->find_all_methods_by_name($new)) {
-        next if $method->associated_metaclass->meta->can('does_role')
-             && $method->associated_metaclass->meta->does_role('MooseX::NonMoose::Meta::Role::Class');
-        return $method->package_name;
-    }
-    # this should never happen (it should find Moose::Object at least)
-    $meta->throw_error("Couldn't find a non-Moose constructor for " . $meta->name);
-}
-
+# for Moose 1.21 compatibility
 sub _generate_fallback_constructor {
     my $self = shift;
     my ($class_var) = @_;
     my $new = $self->name;
     my $meta = $self->associated_metaclass;
-    my $super_new_class = $self->_find_next_nonmoose_constructor_package;
+    my $super_new_class = $meta->_find_next_nonmoose_constructor_package;
     my $arglist = $meta->find_method_by_name('FOREIGNBUILDARGS')
                 ? "${class_var}->FOREIGNBUILDARGS(\@_)"
                 : '@_';
@@ -58,12 +46,13 @@ sub _generate_fallback_constructor {
   . "}";
 }
 
+# for Moose 1.21 compatibility
 sub _generate_instance {
     my $self = shift;
     my ($var, $class_var) = @_;
     my $new = $self->name;
     my $meta = $self->associated_metaclass;
-    my $super_new_class = $self->_find_next_nonmoose_constructor_package;
+    my $super_new_class = $meta->_find_next_nonmoose_constructor_package;
     my $arglist = $meta->find_method_by_name('FOREIGNBUILDARGS')
                 ? "${class_var}->FOREIGNBUILDARGS(\@_)"
                 : '@_';
@@ -99,7 +88,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 SYNOPSIS
 
@@ -134,7 +123,7 @@ Jesse Luehrs <doy at tozt dot net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Jesse Luehrs.
+This software is copyright (c) 2011 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
