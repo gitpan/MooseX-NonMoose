@@ -12,7 +12,8 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'easy subclassing of non-Moose classes',
   'AUTHOR' => 'Jesse Luehrs <doy at tozt dot net>',
   'BUILD_REQUIRES' => {
-    'Test::Fatal' => '0'
+    'Test::Fatal' => '0',
+    'Test::More' => '0.88'
   },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
@@ -25,7 +26,7 @@ my %WriteMakefileArgs = (
     'List::MoreUtils' => '0',
     'Moose' => '1.15'
   },
-  'VERSION' => '0.18',
+  'VERSION' => '0.19',
   'test' => {
     'TESTS' => 't/*.t'
   }

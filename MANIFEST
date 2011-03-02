@@ -25,6 +25,7 @@ t/22-replaced-constructor.t
 t/23-FOREIGNBUILDARGS.t
 t/24-nonmoose-moose-nonmoose.t
 t/25-constructor-method-calls.t
+t/26-no-new-constructor-error.t
 t/30-only-metaclass-trait.t
 t/31-moose-exporter.t
 t/32-moosex-insideout.t

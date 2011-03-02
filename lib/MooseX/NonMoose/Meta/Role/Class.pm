@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Class;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.18';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.19';
 }
 use Moose::Role;
 use List::MoreUtils qw(any);
@@ -30,14 +30,25 @@ sub _determine_constructor_options {
         unless $cc_meta->can('does_role')
             && $cc_meta->does_role('MooseX::NonMoose::Meta::Role::Constructor');
 
+    # XXX: get constructor name from the constructor metaclass?
+    my $local_constructor = $self->get_method('new');
+    if (!defined($local_constructor)) {
+        warn "Not inlining a constructor for " . $self->name . " since "
+           . "its parent " . ($self->superclasses)[0] . " doesn't contain a "
+           . "'new' method. "
+           . "If you are certain you don't need to inline your"
+           . " constructor, specify inline_constructor => 0 in your"
+           . " call to " . $self->name . "->meta->make_immutable\n";
+        return @options;
+    }
+
     # do nothing if extends was called, but we then added a method modifier to
     # the constructor (this will warn, but that's okay)
     # XXX: this is a fairly big hack, but it should cover most of the cases
     # that actually show up in practice... it would be nice to do this properly
     # though
-    # XXX: get constructor name from the constructor metaclass?
     return @options
-        if $self->get_method('new')->isa('Class::MOP::Method::Wrapped');
+        if $local_constructor->isa('Class::MOP::Method::Wrapped');
 
     # do nothing if we explicitly ask for the constructor to not be inlined
     my %options = @options;
@@ -281,7 +292,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 SYNOPSIS
 
