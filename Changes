@@ -1,5 +1,9 @@
 Revision history for MooseX-NonMoose
 
+0.20  2011-03-22
+      - fix warning when passing inline_constructor => 0 with no superclass new
+        method (rafl).
+
 0.19  2011-03-02
       - don't die if superclass doesn't have a 'new' method
 

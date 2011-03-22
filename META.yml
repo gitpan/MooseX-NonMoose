@@ -19,7 +19,7 @@ requires:
   Moose: 1.15
 resources:
   repository: git://github.com/doy/moosex-nonmoose.git
-version: 0.19
+version: 0.20
 x_Dist_Zilla:
   plugins:
     -

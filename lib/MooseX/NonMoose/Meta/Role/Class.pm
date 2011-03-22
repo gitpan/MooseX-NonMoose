@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Class;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.19';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.20';
 }
 use Moose::Role;
 use List::MoreUtils qw(any);
@@ -30,6 +30,10 @@ sub _determine_constructor_options {
         unless $cc_meta->can('does_role')
             && $cc_meta->does_role('MooseX::NonMoose::Meta::Role::Constructor');
 
+    # do nothing if we explicitly ask for the constructor to not be inlined
+    my %options = @options;
+    return @options if !$options{inline_constructor};
+
     # XXX: get constructor name from the constructor metaclass?
     my $local_constructor = $self->get_method('new');
     if (!defined($local_constructor)) {
@@ -49,10 +53,6 @@ sub _determine_constructor_options {
     # though
     return @options
         if $local_constructor->isa('Class::MOP::Method::Wrapped');
-
-    # do nothing if we explicitly ask for the constructor to not be inlined
-    my %options = @options;
-    return @options if !$options{inline_constructor};
 
     # otherwise, explicitly ask for the constructor to be replaced (to suppress
     # the warning message), since this is the expected usage, and shouldn't
@@ -292,7 +292,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 SYNOPSIS
 
