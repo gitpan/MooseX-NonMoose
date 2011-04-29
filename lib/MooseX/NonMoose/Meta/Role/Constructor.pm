@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Constructor;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.20';
+  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.21';
 }
 use Moose::Role;
 # ABSTRACT: constructor method trait for L<MooseX::NonMoose>
@@ -88,7 +88,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 SYNOPSIS
 

@@ -4,7 +4,7 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -16,7 +16,7 @@ my %WriteMakefileArgs = (
     'Test::More' => '0.88'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'MooseX-NonMoose',
   'EXE_FILES' => [],
@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     'List::MoreUtils' => '0',
     'Moose' => '1.15'
   },
-  'VERSION' => '0.20',
+  'VERSION' => '0.21',
   'test' => {
     'TESTS' => 't/*.t'
   }

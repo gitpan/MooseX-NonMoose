@@ -19,6 +19,7 @@ t/05-moose.t
 t/06-disable.t
 t/07-extends-moose-object.t
 t/10-immutable.t
+t/11-constructor-name.t
 t/20-BUILD.t
 t/21-BUILDARGS.t
 t/22-replaced-constructor.t

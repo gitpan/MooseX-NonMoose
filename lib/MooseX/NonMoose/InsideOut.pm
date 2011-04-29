@@ -1,6 +1,6 @@
 package MooseX::NonMoose::InsideOut;
 BEGIN {
-  $MooseX::NonMoose::InsideOut::VERSION = '0.20';
+  $MooseX::NonMoose::InsideOut::VERSION = '0.21';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose non-hashref classes
@@ -36,7 +36,7 @@ MooseX::NonMoose::InsideOut - easy subclassing of non-Moose non-hashref classes
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,6 @@
 package MooseX::NonMoose;
 BEGIN {
-  $MooseX::NonMoose::VERSION = '0.20';
+  $MooseX::NonMoose::VERSION = '0.21';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose classes
@@ -35,7 +35,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 SYNOPSIS
 
@@ -97,13 +97,14 @@ return a list of arguments to pass to the superclass constructor. This allows
 C<MooseX::NonMoose> to support superclasses whose constructors would get
 confused by the extra arguments that Moose requires (for attributes, etc.)
 
-=head1 TODO
+Not all non-Moose classes use C<new> as the name of their constructor. This
+module allows you to extend these classes by explicitly stating which method is
+the constructor, during the call to C<extends>. The syntax looks like this:
 
-=over 4
+  extends 'Foo' => { -constructor_name => 'create' };
 
-=item * Allow for constructors with names other than C<new>.
-
-=back
+similar to how you can already pass C<-version> in the C<extends> call in a
+similar way.
 
 =head1 BUGS/CAVEATS
 
@@ -122,10 +123,6 @@ C<MooseX::NonMoose> (i.e. using C<sub new { ... }>) currently doesn't work,
 although using method modifiers on the constructor should work identically to
 normal Moose classes.
 
-=item * C<MooseX::NonMoose> currently assumes in several places that the
-superclass constructor will be called C<new>. This may be made configurable
-in the future.
-
 =back
 
 Please report any bugs through RT: email
@@ -138,7 +135,7 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MooseX-NonMoose>.
 
 =over 4
 
-=item * L<Moose::Cookbook::FAQ/How do I make non-Moose constructors work with Moose?>
+=item * L<Moose::Manual::FAQ/How do I make non-Moose constructors work with Moose?>
 
 =item * L<MooseX::Alien>
 
