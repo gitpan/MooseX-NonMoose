@@ -4,7 +4,7 @@
       "Jesse Luehrs <doy at tozt dot net>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.101670",
+   "generated_by" : "Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110930",
    "license" : [
       "perl_5"
    ],
@@ -40,7 +40,7 @@
          "web" : "http://github.com/doy/moosex-nonmoose"
       }
    },
-   "version" : "0.21",
+   "version" : "0.22",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

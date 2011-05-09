@@ -1,6 +1,6 @@
 package MooseX::NonMoose;
 BEGIN {
-  $MooseX::NonMoose::VERSION = '0.21';
+  $MooseX::NonMoose::VERSION = '0.22';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose classes
@@ -35,7 +35,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 SYNOPSIS
 

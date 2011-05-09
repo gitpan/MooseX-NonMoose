@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     'List::MoreUtils' => '0',
     'Moose' => '1.15'
   },
-  'VERSION' => '0.21',
+  'VERSION' => '0.22',
   'test' => {
     'TESTS' => 't/*.t'
   }

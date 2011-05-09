@@ -1,6 +1,6 @@
 package MooseX::NonMoose::Meta::Role::Class;
 BEGIN {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.21';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.22';
 }
 use Moose::Role;
 use List::MoreUtils qw(any);
@@ -26,6 +26,25 @@ has constructor_name => (
     lazy    => 1,
     default => sub { shift->throw_error("No constructor name has been set") },
 );
+
+# XXX ugh, really need to fix this in moose
+around reinitialize => sub {
+    my $orig = shift;
+    my $class = shift;
+    my ($pkg) = @_;
+
+    my $meta = blessed($pkg) ? $pkg : Class::MOP::class_of($pkg);
+
+    $class->$orig(
+        @_,
+        (map { $_->init_arg => $_->get_value($meta) }
+             grep { $_->has_value($meta) }
+                  map { $meta->meta->find_attribute_by_name($_) }
+                      qw(has_nonmoose_constructor
+                         has_nonmoose_destructor
+                         constructor_name)),
+    );
+};
 
 sub _determine_constructor_options {
     my $self = shift;
@@ -340,7 +359,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 SYNOPSIS
 
