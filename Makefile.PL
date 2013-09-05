@@ -9,29 +9,52 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'easy subclassing of non-Moose classes',
-  'AUTHOR' => 'Jesse Luehrs <doy at tozt dot net>',
-  'BUILD_REQUIRES' => {
-    'Test::Fatal' => '0',
-    'Test::More' => '0.88'
+  "ABSTRACT" => "easy subclassing of non-Moose classes",
+  "AUTHOR" => "Jesse Luehrs <doy\@tozt.net>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "DISTNAME" => "MooseX-NonMoose",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "MooseX::NonMoose",
+  "PREREQ_PM" => {
+    "List::MoreUtils" => 0,
+    "Module::Runtime" => 0,
+    "Moose::Exporter" => 0,
+    "Moose::Role" => "2.0000",
+    "warnings" => 0
   },
-  'DISTNAME' => 'MooseX-NonMoose',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'MooseX::NonMoose',
-  'PREREQ_PM' => {
-    'List::MoreUtils' => '0',
-    'Moose' => '1.15'
+  "TEST_REQUIRES" => {
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "Moose" => 0,
+    "Test::Fatal" => 0,
+    "Test::Moose" => 0,
+    "Test::More" => "0.88",
+    "base" => 0,
+    "strict" => 0
   },
-  'VERSION' => '0.22',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.23",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
+  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};

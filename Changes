@@ -1,5 +1,9 @@
 Revision history for MooseX-NonMoose
 
+0.23  2013-09-04
+      - stop using old and deprecated (or soon to be deprecated) functions from
+        Class::MOP
+
 0.22  2011-05-09
       - Fix issues where the metaclass gets reinitialized after the call to
         'extends' but before 'make_immutable'. This could happen if a role
