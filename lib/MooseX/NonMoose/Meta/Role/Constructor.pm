@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::NonMoose::Meta::Role::Constructor::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.23';
+  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.24';
 }
 use Moose::Role 2.0000;
 # ABSTRACT: constructor method trait for L<MooseX::NonMoose>
@@ -38,7 +38,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.23
+version 0.24
 
 =head1 SYNOPSIS
 

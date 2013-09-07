@@ -24,6 +24,7 @@ my %WriteMakefileArgs = (
     "Module::Runtime" => 0,
     "Moose::Exporter" => 0,
     "Moose::Role" => "2.0000",
+    "Moose::Util" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
@@ -36,7 +37,7 @@ my %WriteMakefileArgs = (
     "base" => 0,
     "strict" => 0
   },
-  "VERSION" => "0.23",
+  "VERSION" => "0.24",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -32,6 +32,7 @@
             "Module::Runtime" : "0",
             "Moose::Exporter" : "0",
             "Moose::Role" : "2.0000",
+            "Moose::Util" : "0",
             "warnings" : "0"
          }
       },
@@ -51,19 +52,19 @@
    "provides" : {
       "MooseX::NonMoose" : {
          "file" : "lib/MooseX/NonMoose.pm",
-         "version" : "0.23"
+         "version" : "0.24"
       },
       "MooseX::NonMoose::InsideOut" : {
          "file" : "lib/MooseX/NonMoose/InsideOut.pm",
-         "version" : "0.23"
+         "version" : "0.24"
       },
       "MooseX::NonMoose::Meta::Role::Class" : {
          "file" : "lib/MooseX/NonMoose/Meta/Role/Class.pm",
-         "version" : "0.23"
+         "version" : "0.24"
       },
       "MooseX::NonMoose::Meta::Role::Constructor" : {
          "file" : "lib/MooseX/NonMoose/Meta/Role/Constructor.pm",
-         "version" : "0.23"
+         "version" : "0.24"
       }
    },
    "release_status" : "stable",
@@ -78,7 +79,7 @@
          "web" : "https://github.com/doy/moosex-nonmoose"
       }
    },
-   "version" : "0.23",
+   "version" : "0.24",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018001"
@@ -315,7 +316,8 @@
       "Dave Rolsky <autarch@urth.org>",
       "Florian Ragwitz <rafl@debian.org>",
       "Hans Dieter Pearcey <hdp@weftsoar.net>",
-      "Jason May <jason.a.may@gmail.com>"
+      "Jason May <jason.a.may@gmail.com>",
+      "Karen Etheridge <ether@cpan.org>"
    ]
 }
 

@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::NonMoose::Meta::Role::Class::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.23';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.24';
 }
 use Moose::Role;
 # ABSTRACT: metaclass trait for L<MooseX::NonMoose>
@@ -365,7 +365,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.23
+version 0.24
 
 =head1 SYNOPSIS
 

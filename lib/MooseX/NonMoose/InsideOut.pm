@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::NonMoose::InsideOut::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::InsideOut::VERSION = '0.23';
+  $MooseX::NonMoose::InsideOut::VERSION = '0.24';
 }
 use Moose::Exporter;
 # ABSTRACT: easy subclassing of non-Moose non-hashref classes
@@ -40,7 +40,7 @@ MooseX::NonMoose::InsideOut - easy subclassing of non-Moose non-hashref classes
 
 =head1 VERSION
 
-version 0.23
+version 0.24
 
 =head1 SYNOPSIS
 
