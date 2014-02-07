@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::NonMoose::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::VERSION = '0.24';
+  $MooseX::NonMoose::VERSION = '0.25';
 }
 use Moose::Exporter;
 use Moose::Util;
@@ -40,7 +40,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 SYNOPSIS
 
@@ -123,7 +123,7 @@ any class. For globref-based classes in particular, L<MooseX::GlobRef> will
 also allow Moose to work. For more information, see the C<032-moosex-insideout>
 and C<033-moosex-globref> tests bundled with this dist.
 
-=item * Modifying your class' C<@ISA> after an intial C<extends> call will potentially
+=item * Modifying your class' C<@ISA> after an initial C<extends> call will potentially
 cause problems if any of those new entries in the C<@ISA> override the constructor.
 C<MooseX::NonMoose> wraps the nearest C<new()> method at the time C<extends>
 is called and will not see any other C<new()> methods in the @ISA hierarchy.
@@ -187,7 +187,7 @@ Jesse Luehrs <doy@tozt.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Jesse Luehrs.
+This software is copyright (c) 2014 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::NonMoose::Meta::Role::Constructor::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.24';
+  $MooseX::NonMoose::Meta::Role::Constructor::VERSION = '0.25';
 }
 use Moose::Role 2.0000;
 # ABSTRACT: constructor method trait for L<MooseX::NonMoose>
@@ -38,7 +38,7 @@ MooseX::NonMoose::Meta::Role::Constructor - constructor method trait for L<Moose
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 SYNOPSIS
 
@@ -73,7 +73,7 @@ Jesse Luehrs <doy@tozt.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Jesse Luehrs.
+This software is copyright (c) 2014 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

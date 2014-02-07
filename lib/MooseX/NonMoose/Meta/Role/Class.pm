@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::NonMoose::Meta::Role::Class::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.24';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.25';
 }
 use Moose::Role;
 # ABSTRACT: metaclass trait for L<MooseX::NonMoose>
@@ -249,7 +249,12 @@ around superclasses => sub {
             );
         }
 
-        use_package_optimistically($name, $opts ? $opts->{-version} : ());
+        if ($opts && exists($opts->{-version})) {
+            use_package_optimistically($name, $opts->{-version});
+        }
+        else {
+            use_package_optimistically($name);
+        }
 
         if (defined($cur_constructor_name)) {
             my $meta = Moose::Util::find_meta($name);
@@ -365,7 +370,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 SYNOPSIS
 
@@ -402,7 +407,7 @@ Jesse Luehrs <doy@tozt.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Jesse Luehrs.
+This software is copyright (c) 2014 by Jesse Luehrs.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
