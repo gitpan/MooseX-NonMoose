@@ -3,13 +3,14 @@ BEGIN {
   $MooseX::NonMoose::Meta::Role::Class::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.25';
+  $MooseX::NonMoose::Meta::Role::Class::VERSION = '0.26';
 }
 use Moose::Role;
 # ABSTRACT: metaclass trait for L<MooseX::NonMoose>
 
 use List::MoreUtils qw(any);
 use Module::Runtime qw(use_package_optimistically);
+use Try::Tiny;
 
 
 has has_nonmoose_constructor => (
@@ -370,7 +371,7 @@ MooseX::NonMoose::Meta::Role::Class - metaclass trait for L<MooseX::NonMoose>
 
 =head1 VERSION
 
-version 0.25
+version 0.26
 
 =head1 SYNOPSIS
 

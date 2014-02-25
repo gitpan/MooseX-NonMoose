@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::NonMoose::AUTHORITY = 'cpan:DOY';
 }
 {
-  $MooseX::NonMoose::VERSION = '0.25';
+  $MooseX::NonMoose::VERSION = '0.26';
 }
 use Moose::Exporter;
 use Moose::Util;
@@ -40,7 +40,7 @@ MooseX::NonMoose - easy subclassing of non-Moose classes
 
 =head1 VERSION
 
-version 0.25
+version 0.26
 
 =head1 SYNOPSIS
 

@@ -24,28 +24,29 @@ name: MooseX-NonMoose
 provides:
   MooseX::NonMoose:
     file: lib/MooseX/NonMoose.pm
-    version: 0.25
+    version: 0.26
   MooseX::NonMoose::InsideOut:
     file: lib/MooseX/NonMoose/InsideOut.pm
-    version: 0.25
+    version: 0.26
   MooseX::NonMoose::Meta::Role::Class:
     file: lib/MooseX/NonMoose/Meta/Role/Class.pm
-    version: 0.25
+    version: 0.26
   MooseX::NonMoose::Meta::Role::Constructor:
     file: lib/MooseX/NonMoose/Meta/Role/Constructor.pm
-    version: 0.25
+    version: 0.26
 requires:
   List::MoreUtils: 0
   Module::Runtime: 0
   Moose::Exporter: 0
   Moose::Role: 2.0000
   Moose::Util: 0
+  Try::Tiny: 0
   warnings: 0
 resources:
   bugtracker: https://github.com/doy/moosex-nonmoose/issues
   homepage: http://metacpan.org/release/MooseX-NonMoose
   repository: git://github.com/doy/moosex-nonmoose.git
-version: 0.25
+version: 0.26
 x_Dist_Zilla:
   perl:
     version: 5.018001
@@ -271,6 +272,7 @@ x_contributors:
   - 'Brian Phillips <brian@thephillips.info>'
   - 'Dave Rolsky <autarch@urth.org>'
   - 'Florian Ragwitz <rafl@debian.org>'
+  - 'Gareth Harper <gareth@broadbean.com>'
   - 'Hans Dieter Pearcey <hdp@weftsoar.net>'
   - 'Jason May <jason.a.may@gmail.com>'
   - 'Karen Etheridge <ether@cpan.org>'

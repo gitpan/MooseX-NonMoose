@@ -26,6 +26,7 @@ my %WriteMakefileArgs = (
     "Moose::Exporter" => 0,
     "Moose::Role" => "2.0000",
     "Moose::Util" => 0,
+    "Try::Tiny" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
@@ -39,7 +40,7 @@ my %WriteMakefileArgs = (
     "base" => 0,
     "strict" => 0
   },
-  "VERSION" => "0.25",
+  "VERSION" => "0.26",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -59,6 +60,7 @@ my %FallbackPrereqs = (
   "Test::Fatal" => 0,
   "Test::Moose" => 0,
   "Test::More" => "0.88",
+  "Try::Tiny" => 0,
   "base" => 0,
   "strict" => 0,
   "warnings" => 0
